@@ -1,6 +1,7 @@
 package org.shop.searchrestaurant
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.CameraAnimation
@@ -9,6 +10,9 @@ import com.naver.maps.map.MapView
 import com.naver.maps.map.NaverMap
 import com.naver.maps.map.OnMapReadyCallback
 import org.shop.searchrestaurant.databinding.ActivityMainBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MainActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var binding: ActivityMainBinding
@@ -25,6 +29,17 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
         mapView.onCreate(savedInstanceState)
 
         binding.mapView.getMapAsync(this)
+
+        SearchRepository.getGoodRestaurant("서울").enqueue(object : Callback<SearchResult> {
+            override fun onResponse(call: Call<SearchResult>, response: Response<SearchResult>) {
+                Log.e("MainActivity onResponse", response.body().toString())
+            }
+
+            override fun onFailure(call: Call<SearchResult>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+        })
     }
 
     override fun onStart() {

@@ -42,6 +42,13 @@ dependencies {
     // 네이버 지도 SDK
     implementation("com.naver.maps:map-sdk:3.17.0")
 
+    // Retrofit2 & Moshi-Converter
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-moshi:2.9.0")
+
+    // Moshi
+    implementation("com.squareup.moshi:moshi-kotlin:1.14.0")
+
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")
